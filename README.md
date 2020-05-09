@@ -1,3 +1,6 @@
+# scrpitCode supported
+it's can support like zh_Hans or zh_Hant locale
+
 # flutter_i18n
 I18n made easy, for Flutter!
 
