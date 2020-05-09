@@ -83,7 +83,8 @@ class FileTranslationLoader extends TranslationLoader implements IFileContent {
 
   @protected
   String composeFileName() {
-    return "${locale.languageCode}${composeCountryCode()}";
+    //return "${locale.languageCode}${composeCountryCode()}";
+    return "${locale.languageCode}${composeScriptCode()}${composeCountryCode()}";
   }
 
   @protected
@@ -93,5 +94,14 @@ class FileTranslationLoader extends TranslationLoader implements IFileContent {
       countryCode = "_${locale.countryCode}";
     }
     return countryCode;
+  }
+  
+  @protected
+  String composeScriptCode() {
+    String scriptCode = "";
+    if (locale.scriptCode != null) {
+      scriptCode = "_${locale.scriptCode}";
+    }
+    return scriptCode;
   }
 }
