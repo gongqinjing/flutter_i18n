@@ -21,7 +21,15 @@ abstract class TranslationLoader {
   Locale _toLocale(final String locale) {
     final List<String> systemLocaleSplitted = locale.split(LOCALE_SEPARATOR);
     final bool noCountryCode = systemLocaleSplitted.length == 1;
-    return Locale(systemLocaleSplitted.first,
-        noCountryCode ? null : systemLocaleSplitted.last);
+    final bool hasScriptCode = systemLocaleSplitted.length == 3;
+    if (hasScriptCode) {
+      return Locale.fromSubtags(
+          languageCode: systemLocaleSplitted.first,
+          scriptCode: systemLocaleSplitted[1],
+          countryCode: systemLocaleSplitted.last);
+    } else {
+      return Locale(systemLocaleSplitted.first,
+          noCountryCode ? null : systemLocaleSplitted.last);
+    }
   }
 }
