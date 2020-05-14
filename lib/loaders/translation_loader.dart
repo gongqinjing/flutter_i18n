@@ -30,7 +30,7 @@ abstract class TranslationLoader {
     } else {
        if(!noCountryCode){
         if(systemLocaleSplitted[0] == 'zh'){
-          if(systemLocaleSplitted.last == 'HK'|| systemLocaleSplitted.last == 'TW'){
+          if(systemLocaleSplitted.last == 'HK' || systemLocaleSplitted.last == 'TW' || systemLocaleSplitted.last == 'MO'){
             return Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hant');
           }else{
             return Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hans');
