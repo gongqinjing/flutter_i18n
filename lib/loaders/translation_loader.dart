@@ -28,6 +28,15 @@ abstract class TranslationLoader {
           scriptCode: systemLocaleSplitted[1],
           countryCode: systemLocaleSplitted.length == 3?systemLocaleSplitted.last : null);
     } else {
+       if(!noCountryCode){
+        if(systemLocaleSplitted[0] == 'zh'){
+          if(systemLocaleSplitted.last == 'HK'|| systemLocaleSplitted.last == 'TW'){
+            return Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hant');
+          }else{
+            return Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hans');
+          }
+        }
+      }
       return Locale(systemLocaleSplitted.first,
           noCountryCode ? null : systemLocaleSplitted.last);
     }
