@@ -21,12 +21,12 @@ abstract class TranslationLoader {
   Locale _toLocale(final String locale) {
     final List<String> systemLocaleSplitted = locale.split(LOCALE_SEPARATOR);
     final bool noCountryCode = systemLocaleSplitted.length == 1;
-    final bool hasScriptCode = systemLocaleSplitted.length == 3;
+    final bool hasScriptCode = systemLocaleSplitted.length > 1?(systemLocaleSplitted[1] == 'Hans' || systemLocaleSplitted[1] == 'Hant') : false;
     if (hasScriptCode) {
       return Locale.fromSubtags(
           languageCode: systemLocaleSplitted.first,
           scriptCode: systemLocaleSplitted[1],
-          countryCode: systemLocaleSplitted.last);
+          countryCode: systemLocaleSplitted.length == 3?systemLocaleSplitted.last : null);
     } else {
       return Locale(systemLocaleSplitted.first,
           noCountryCode ? null : systemLocaleSplitted.last);
